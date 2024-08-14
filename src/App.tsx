@@ -27,18 +27,20 @@ function App() {
       </header>
 
       <section className="  grid md:grid-cols-2 ">
-        <div className="py-10 px-5 w-full  mx-auto bg-indigo-400  ">
+        <div className="py-10 px-5 w-full  mx-auto bg-indigo-200  ">
           <Form state={state} dispatch={dispatch} />
         </div>
         <div className="  w-full mx-auto text-center bg-indigo-200">
           <ActivityList dispatch={dispatch} activities={state.activities} />
         </div>
       </section>
-      <footer className="bg-white space-y-5 mx-44  ">
+      <footer className="bg-white space-y-5 mx-44 my-10 ">
         <div className="text-center  ">
           <CalorieTracker activities={state.activities} />
         </div>
-        <SocialMedia />
+        <div>
+          <SocialMedia />
+        </div>
       </footer>
     </>
   );

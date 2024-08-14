@@ -2,7 +2,7 @@ import {FaGithub, FaLinkedin, FaLaptopCode, FaWhatsapp} from 'react-icons/fa6';
 
 export const SocialMedia = () => {
   return (
-    <div>
+    <div className=" md:mt-28 mt-10">
       <h2 className="text-center text-3xl font-black text-indigo-500">
         Social Media
       </h2>
