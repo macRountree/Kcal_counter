@@ -1,15 +1,18 @@
-import {Dispatch, useMemo} from 'react';
+import {useMemo} from 'react';
 import {PencilSquareIcon, TrashIcon} from '@heroicons/react/24/outline';
 import {categories} from '../data/categories';
 import {Activity} from '../interfaces';
-import {ActivityActions} from '../reducers/activityReducer';
+// import {ActivityActions} from '../reducers/activityReducer';
+import {useActivity} from '../hooks/useActivity';
 
-interface ActivityListProps {
-  activities: Activity[];
-  dispatch: Dispatch<ActivityActions>;
-}
+// interface ActivityListProps {
+//   activities: Activity[];
+//   dispatch: Dispatch<ActivityActions>;
+// }
 
-export const ActivityList = ({activities, dispatch}: ActivityListProps) => {
+export const ActivityList = () => {
+  const {state, dispatch} = useActivity();
+  const {activities} = state;
   const categoryName = useMemo(
     () => (category: Activity['category']) =>
       categories.map(cat => (cat.id === category ? cat.name : '')),

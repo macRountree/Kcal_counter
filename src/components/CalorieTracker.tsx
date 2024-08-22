@@ -1,14 +1,16 @@
 import {useMemo} from 'react';
-import {Activity} from '../interfaces';
+// import {Activity} from '../interfaces';
 import {CalorieDisplay} from './CalorieDisplay';
+import {useActivity} from '../hooks/useActivity';
 
-interface CalorieTrackerProps {
-  activities: Activity[];
-}
+// interface CalorieTrackerProps {
+//   activities: Activity[];
+// }
 
-export const CalorieTracker = ({activities}: CalorieTrackerProps) => {
+export const CalorieTracker = () => {
   //*Calculate the total calories
-
+  const {state} = useActivity();
+  const {activities} = state;
   const caloriesConsumed = useMemo(
     () =>
       activities.reduce(

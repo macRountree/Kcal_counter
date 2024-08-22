@@ -1,34 +1,36 @@
 //*Dependencies
-import {useState, ChangeEvent, FormEvent, Dispatch, useEffect} from 'react';
+import {useState, ChangeEvent, FormEvent, useEffect} from 'react';
 import {v4 as uuidv4} from 'uuid'; //*  recommended install types for uuid
 
 //*files
 import categories from '../data/categories';
 import type {Activity} from '../interfaces';
-import {ActivityActions, ActivityState} from '../reducers/activityReducer';
+import {useActivity} from '../hooks/useActivity';
+// import {ActivityActions, ActivityState} from '../reducers/activityReducer';
 
-interface FormProps {
-  dispatch: Dispatch<ActivityActions>;
-  state: ActivityState;
-}
+// interface FormProps {
+//   dispatch: Dispatch<ActivityActions>;
+//   state: ActivityState;
+// }
 const initialState: Activity = {
   id: uuidv4(),
   category: 1,
   name: '',
   calories: 0,
 };
-export const Form = ({dispatch, state}: FormProps) => {
+export const Form = () => {
   //* name and calories depends on the category
   const [activity, setActivity] = useState<Activity>(initialState);
-
+  const {state, dispatch} = useActivity();
+  const {activeId, activities} = state;
   useEffect(() => {
-    if (state.activeId) {
-      const selectedActivity = state.activities.filter(
-        stateActivity => stateActivity.id === state.activeId
+    if (activeId) {
+      const selectedActivity = activities.filter(
+        stateActivity => stateActivity.id === activeId
       )[0]; //*[0] to get
       setActivity(selectedActivity);
     }
-  }, [state.activeId]);
+  }, [activeId]);
 
   const handleOnChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
